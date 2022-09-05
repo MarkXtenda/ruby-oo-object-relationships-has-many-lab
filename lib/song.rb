@@ -1,4 +1,4 @@
-require_relative './artist.rb'
+require 'pry'
 class Song
     attr_accessor :artist, :name, :genre
   
@@ -18,10 +18,6 @@ class Song
     end
 
     def artist_name
-        self.artist
-      end
+      (self.artist) ? self.artist.name : nil
+    end
   end
-
-  song = Song.new("trick")
-
-  print song.artist_name

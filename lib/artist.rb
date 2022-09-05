@@ -1,10 +1,20 @@
-require_relative './song.rb'
+require 'pry'
 
 class Artist
-    attr_accessor :name
-  
+  attr_accessor :name
+  @@all = []
+
     def initialize(name)
       @name = name
+      save
+    end
+
+    def save
+      @@all << self
+    end
+  
+    def self.all
+      @@all
     end
   
     def add_song(song)
@@ -12,7 +22,7 @@ class Artist
     end
   
     def songs
-      Song.all.select {|song| song.artist == self.class}
+      Song.all.select {|song| song.artist == self }
     end
 
     def add_song_by_name(name)
@@ -20,10 +30,12 @@ class Artist
         song.artist = self
     end
 
-    def song_count
-        songs.size
+    def self.song_count
+        Song.all.size
     end
   end
 
 adele = Artist.new("Adele")
-puts adele.songs
+# adele.add_song_by_name("Niggas in Paris")
+# print adele.songs
+# print Song.all
